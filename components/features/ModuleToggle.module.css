@@ -1,0 +1,89 @@
+.row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: var(--space-3) var(--space-4);
+  padding: var(--space-4) 0;
+  border-bottom: var(--hairline);
+}
+
+.text {
+  min-width: 0;
+}
+
+.name {
+  font-family: var(--font-display);
+  font-size: var(--text-card-size);
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.desc {
+  color: var(--color-ink-soft);
+  font-size: var(--text-small-size);
+  line-height: var(--text-small-line);
+}
+
+.meta {
+  margin-top: var(--space-1);
+  font-family: var(--font-mono);
+  font-size: var(--text-small-size);
+  color: var(--color-ink-soft);
+}
+
+.state {
+  font-size: var(--text-small-size);
+  font-weight: 700;
+  color: var(--color-ink-soft);
+}
+
+.switch {
+  appearance: none;
+  position: relative;
+  width: 2.75rem;
+  height: 1.5rem;
+  margin: 0;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-border);
+  background: var(--color-line);
+  cursor: pointer;
+  transition: background-color var(--duration-micro-max) var(--ease-out-quart);
+}
+
+.switch::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: calc(1.5rem - 6px);
+  height: calc(1.5rem - 6px);
+  border-radius: 50%;
+  background: var(--color-surface);
+  transition: transform var(--duration-component-min) var(--ease-out-quart);
+}
+
+.switch:checked {
+  background: var(--color-pine);
+  border-color: var(--color-pine);
+}
+
+.switch:checked::after {
+  transform: translateX(1.25rem);
+}
+
+.switch:disabled {
+  opacity: 0.6;
+}
+
+.switch:focus-visible {
+  outline: var(--focus-ring-ink);
+  outline-offset: var(--focus-offset);
+  box-shadow: 0 0 0 var(--focus-offset) var(--color-saffron);
+}
+
+/* Touch target: the 44px row is clickable through the label; give the switch padding too. */
+@media (pointer: coarse) {
+  .switch {
+    outline: var(--space-3) solid transparent;
+  }
+}

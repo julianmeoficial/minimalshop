@@ -1,0 +1,190 @@
+.hero {
+  display: grid;
+  gap: var(--space-7);
+  padding-bottom: var(--space-8);
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .hero {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    gap: var(--space-8);
+    min-height: calc(100svh - var(--nav-offset) - var(--space-7));
+  }
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.eyebrow {
+  font-size: var(--text-eyebrow-size);
+  line-height: var(--text-eyebrow-line);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--color-ink-soft);
+}
+
+.title {
+  font-size: var(--text-hero-size);
+  line-height: var(--text-hero-line);
+  perspective: 800px;
+}
+
+.line {
+  display: block;
+}
+
+.line:nth-child(2) .word {
+  font-style: italic;
+  font-weight: 500;
+}
+
+.mask {
+  display: inline-block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+  margin-right: 0.22em;
+}
+
+.word {
+  display: inline-block;
+  will-change: transform;
+}
+
+.lede {
+  color: var(--color-ink-soft);
+  max-width: 34rem;
+}
+
+.lede strong {
+  color: var(--color-ink);
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 0.95em;
+}
+
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.figure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-5);
+  border: var(--hairline);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+}
+
+.diagram {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.caption {
+  font-family: var(--font-mono);
+  font-size: var(--text-small-size);
+  line-height: var(--text-small-line);
+  color: var(--color-ink-soft);
+}
+
+/* ---- SVG parts (colours are tokens) ---- */
+
+.wire,
+.wireSoft,
+.wireAccent {
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+}
+
+.wire {
+  stroke: var(--color-ink);
+}
+
+.wireSoft {
+  stroke: var(--color-border);
+}
+
+.wireAccent {
+  stroke: var(--color-pine);
+  stroke-width: 2.5;
+}
+
+.module {
+  fill: var(--color-paper);
+  stroke: var(--color-border);
+}
+
+.moduleText {
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 700;
+  fill: var(--color-ink);
+}
+
+.core {
+  fill: var(--color-ink);
+}
+
+.coreKicker {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  fill: var(--color-saffron);
+}
+
+.coreText {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  fill: var(--color-surface);
+}
+
+.store {
+  fill: var(--color-surface);
+  stroke: var(--color-ink);
+}
+
+.storeAccent {
+  fill: var(--tint-pine);
+  stroke: var(--color-pine);
+  stroke-width: 2;
+}
+
+.storeText {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 500;
+  fill: var(--color-ink);
+}
+
+.pulse {
+  fill: var(--color-ink);
+}
+
+.pulseAccent {
+  fill: var(--color-pine);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .pulseAccent {
+    animation: beat var(--duration-skeleton) var(--ease-in-out) infinite alternate;
+  }
+}
+
+@keyframes beat {
+  to {
+    opacity: 0.35;
+  }
+}

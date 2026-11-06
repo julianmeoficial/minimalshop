@@ -1,0 +1,181 @@
+.page {
+  display: flex;
+  flex-direction: column;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-7);
+  padding-block: var(--space-8);
+  border-top: var(--hairline);
+  scroll-margin-top: var(--nav-offset);
+}
+
+@media (min-width: 1024px) {
+  .section {
+    padding-block: var(--space-9);
+  }
+}
+
+.eyebrow {
+  font-size: var(--text-eyebrow-size);
+  line-height: var(--text-eyebrow-line);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--color-ink-soft);
+}
+
+.principles {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-6);
+  border-top: 1px solid var(--color-ink);
+}
+
+@media (min-width: 768px) {
+  .principles {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0;
+  }
+
+  .principle + .principle {
+    border-left: var(--hairline);
+  }
+}
+
+.principle {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-5) var(--space-5) 0 0;
+}
+
+@media (min-width: 768px) {
+  .principle + .principle {
+    padding-left: var(--space-5);
+  }
+}
+
+.number {
+  font-family: var(--font-mono);
+  font-size: var(--text-small-size);
+  color: var(--color-ink-soft);
+}
+
+.principleTitle {
+  font-size: var(--text-section-size);
+  line-height: var(--text-section-line);
+  font-weight: 500;
+}
+
+.principleBody {
+  color: var(--color-ink-soft);
+}
+
+.quote {
+  margin: 0;
+  padding: var(--space-6) 0 0;
+  border-top: var(--hairline);
+}
+
+.quote p {
+  max-width: 34ch;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: var(--text-section-size);
+  line-height: var(--text-section-line);
+}
+
+.repos {
+  display: grid;
+  gap: var(--space-3);
+}
+
+@media (min-width: 768px) {
+  .repos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.repo {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  border-radius: var(--radius-md);
+  background: var(--color-ink);
+  color: var(--color-surface);
+  text-decoration: none;
+  transition: background-color var(--duration-micro-max) var(--ease-out-quart);
+}
+
+.repo:hover {
+  background: var(--color-pine);
+}
+
+.repo > svg:last-of-type {
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.repoText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.repoKicker {
+  font-size: var(--text-eyebrow-size);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--color-saffron);
+}
+
+.repoName {
+  font-family: var(--font-mono);
+  font-size: var(--text-card-size);
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+
+.repoBody {
+  font-size: var(--text-small-size);
+  line-height: var(--text-small-line);
+  opacity: 0.85;
+}
+
+.closing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-4);
+  padding-block: var(--space-9) var(--space-6);
+  border-top: var(--hairline);
+}
+
+.closingTitle {
+  font-size: var(--text-section-size);
+  line-height: var(--text-section-line);
+  max-width: 22ch;
+}
+
+.closingTitle em,
+.quote em {
+  font-weight: 500;
+}
+
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+}

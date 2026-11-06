@@ -1,0 +1,43 @@
+{
+  "name": "minimalshop",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Storefront MinimalShop — cliente Next.js de la Minimal Ecommerce API",
+  "engines": {
+    "node": ">=20"
+  },
+  "packageManager": "pnpm@11.24.0",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "api:types": "openapi-typescript ${NEXT_PUBLIC_API_DOCS_JSON:-https://minimalshopapi.up.railway.app/docs-json} -o lib/api/schema.d.ts"
+  },
+  "dependencies": {
+    "gsap": "^3.13.0",
+    "lucide-react": "^0.511.0",
+    "motion": "^12.12.1",
+    "next": "^15.3.2",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
+    "@types/node": "^22.15.21",
+    "@types/react": "^19.1.4",
+    "@types/react-dom": "^19.1.5",
+    "@vitejs/plugin-react": "^4.4.1",
+    "eslint": "^9.27.0",
+    "eslint-config-next": "^15.3.2",
+    "jsdom": "^26.1.0",
+    "openapi-typescript": "^7.8.0",
+    "typescript": "^5.8.3",
+    "vitest": "^3.1.4"
+  }
+}

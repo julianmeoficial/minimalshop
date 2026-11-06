@@ -1,0 +1,70 @@
+# MinimalShop — Project Rules
+
+## What this repo is
+Next.js storefront (MinimalShop) that consumes the Minimal Ecommerce API under /api/v1.
+Editorial "paper and ink" design with a single glass layer. Buyer, seller and superadmin roles.
+
+## Stack
+- Next.js (App Router) + React + TypeScript (strict mode). No JavaScript files.
+- Styling: CSS Modules, one file per component, plus tokens in styles/tokens.css.
+- Motion: Motion (motion.dev) for component-level animation; GSAP + ScrollTrigger for
+  sequences and scroll. Never both on the same element.
+- Icons: Lucide. Fonts: next/font (Atkinson Hyperlegible Next, Newsreader, IBM Plex Mono).
+- Data: one typed HTTP client in lib/api/. DTO types mirror the API contracts exactly.
+
+## Structure
+- app/                routes, layouts, server components
+- components/ui/      design system primitives (Button, Field, Dialog, GlassSurface...)
+- components/features/ feature-specific composition
+- styles/tokens.css   every design token as a CSS custom property
+- lib/api/            client, endpoints, error mapping
+- lib/motion/         shared variants, easings and GSAP helpers
+
+## Commands
+- pnpm dev            local dev server
+- pnpm build          production build (must pass with zero warnings)
+- pnpm lint           ESLint, zero errors
+- pnpm typecheck      tsc --noEmit
+- pnpm test           unit tests
+
+## Non-negotiable rules
+1. Read DESIGN.md before writing any UI. It is the contract, not a suggestion.
+2. Never hardcode a color, space, radius, shadow or duration. Use tokens from styles/tokens.css.
+3. Glass (`--glass-*`) only on floating surfaces: nav, dialog, sheet, toast, chip, price tag.
+   Never on content blocks, never glass on glass, max two per screen.
+4. Do not invent components that are not in DESIGN.md. If one is missing, propose it first.
+5. Accessibility is a gate: WCAG 2.2 AA, visible focus, keyboard complete, `aria-live` for
+   dynamic updates, 44px touch targets, `prefers-reduced-motion` and `prefers-reduced-transparency`
+   honored.
+6. All network access goes through lib/api/. No fetch calls inside components.
+7. TypeScript strict: no `any`, no `@ts-ignore`, no non-null assertion to silence errors.
+8. Never commit secrets. Every key lives in .env.local and is git-ignored.
+
+## API rules
+- Base URL from NEXT_PUBLIC_API_URL. All paths under /api/v1.
+- Auth: JWT access token plus rotating refresh. Send `Authorization: Bearer <token>`.
+- Forward `x-correlation-id` from the API response into logs; never strip it.
+- Map API errors to a typed union in lib/api/errors.ts; never surface a raw message.
+- Pagination is mandatory on list endpoints; page size never above the API limit (50).
+- See docs/API.md for the resource map and docs/CAPABILITIES.md for module flags.
+
+## Style of code
+- One component per file, named export matching the file.
+- Props interface: `<ComponentName>Props`.
+- Server components by default; add `'use client'` only when state, effects or motion need it.
+- Animations live in lib/motion/ as reusable helpers. No ad-hoc timings per component.
+- Tests colocated as `<component>.test.tsx`.
+
+## Verification before finishing
+1. `pnpm lint` and `pnpm typecheck` clean.
+2. `pnpm test` green; visual check at 360, 768 and 1024.
+3. No hardcoded values (grep the diff for `#` and for `px` outside tokens).
+4. Keyboard and axe pass; reduced-motion pass shows a static version.
+5. Screenshot compared against the Figma frame.
+
+## Never
+- Never install a UI library, icon set or animation library without approval.
+- Never use Tailwind, styled-components or a CSS-in-JS runtime.
+- Never use Inter, Roboto, Arial or Space Grotesk.
+- Never add dark mode, infinite scroll or a full-screen spinner.
+- Never break the contract: the frontend adapts to the API DTOs, not the other way around.

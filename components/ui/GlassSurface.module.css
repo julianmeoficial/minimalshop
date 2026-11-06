@@ -1,0 +1,160 @@
+/*
+ * Glass material — DESIGN.md §4.
+ * Liquid (Apple reading): deep blur, vertical body tint, specular sheen and a refracted rim
+ *   that is brightest top-left and fades around the edge.
+ * Crystal (ColorOS reading): crisper blur, hard bright edge, one diagonal streak and a
+ *   faceted conic rim.
+ * Blur is never animated. Opaque fallback when unsupported, reduced or forced colours.
+ */
+
+/* Zero specificity so consumers can set position (sticky, fixed) without fighting order. */
+:where(.root) {
+  position: relative;
+  isolation: isolate;
+  border: 1px solid var(--glass-border);
+  color: var(--color-ink);
+}
+
+.root::before,
+.root::after {
+  content: '';
+  pointer-events: none;
+  position: absolute;
+  border-radius: inherit;
+  z-index: -1;
+}
+
+.root::before {
+  inset: 0;
+}
+
+/* Gradient rim drawn as a 1px ring (mask keeps only the padding box edge). */
+.root::after {
+  inset: -1px;
+  padding: 1px;
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box exclude,
+    linear-gradient(#000 0 0);
+}
+
+/* ---------- Liquid ---------- */
+
+.liquid {
+  background:
+    linear-gradient(180deg, var(--glass-tint-top) 0%, var(--glass-tint-bottom) 100%),
+    var(--glass-surface);
+  -webkit-backdrop-filter: blur(var(--glass-blur-liquid))
+    saturate(var(--glass-saturate-liquid));
+  backdrop-filter: blur(var(--glass-blur-liquid)) saturate(var(--glass-saturate-liquid));
+  border-radius: var(--radius-liquid);
+  box-shadow:
+    inset 0 1px 0 var(--glass-border),
+    inset 0 -1px 0 var(--glass-edge-shade),
+    var(--glass-shadow);
+}
+
+/* Specular sheen from 160deg, fading at 40%; a faint ink veil at the bottom. */
+.liquid::before {
+  background:
+    linear-gradient(160deg, var(--glass-highlight) 0%, transparent 40%),
+    linear-gradient(180deg, transparent 55%, var(--glass-ink-veil) 100%);
+}
+
+.liquid::after {
+  background: linear-gradient(
+    135deg,
+    var(--glass-rim) 0%,
+    var(--glass-rim-soft) 35%,
+    transparent 55%,
+    var(--glass-rim-soft) 85%,
+    var(--glass-lens) 100%
+  );
+}
+
+/* ---------- Crystal ---------- */
+
+.crystal {
+  background: var(--glass-surface);
+  -webkit-backdrop-filter: blur(var(--glass-blur-crystal))
+    saturate(var(--glass-saturate-crystal));
+  backdrop-filter: blur(var(--glass-blur-crystal)) saturate(var(--glass-saturate-crystal));
+  border-color: var(--glass-edge-crystal);
+  border-radius: var(--radius-crystal);
+  box-shadow:
+    inset 0 1px 0 var(--glass-edge-crystal),
+    var(--glass-shadow-crystal);
+}
+
+/* One diagonal specular streak. */
+.crystal::before {
+  background: linear-gradient(
+    115deg,
+    transparent 16%,
+    var(--glass-highlight) 24%,
+    transparent 32%,
+    transparent 70%,
+    var(--glass-rim-soft) 76%,
+    transparent 82%
+  );
+}
+
+/* Faceted rim: hard bright corners, as if the edge were cut. */
+.crystal::after {
+  background: conic-gradient(
+    from 200deg,
+    var(--glass-rim) 0deg,
+    var(--glass-rim-soft) 60deg,
+    var(--glass-rim) 120deg,
+    var(--glass-rim-soft) 200deg,
+    var(--glass-rim) 280deg,
+    var(--glass-rim-soft) 330deg,
+    var(--glass-rim) 360deg
+  );
+}
+
+.liquid.strong {
+  background:
+    linear-gradient(180deg, var(--glass-tint-top) 0%, var(--glass-tint-bottom) 100%),
+    var(--glass-surface-strong);
+}
+
+.crystal.strong {
+  background: var(--glass-surface-strong);
+}
+
+/* ---------- Fallbacks ---------- */
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .liquid,
+  .crystal,
+  .liquid.strong,
+  .crystal.strong {
+    background: var(--glass-fallback);
+  }
+}
+
+@media (prefers-reduced-transparency: reduce), (forced-colors: active) {
+  .liquid,
+  .crystal,
+  .liquid.strong,
+  .crystal.strong {
+    background: var(--glass-fallback);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  .root::before,
+  .root::after {
+    display: none;
+  }
+}
+
+@media (forced-colors: active) {
+  :where(.root) {
+    border-color: CanvasText;
+  }
+}

@@ -1,0 +1,64 @@
+.region {
+  position: fixed;
+  right: var(--space-4);
+  bottom: var(--space-4);
+  /* Mobile/tablet: below the nav, clear of the floating bottom bars. */
+  top: auto;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  width: min(100% - var(--space-8), 22rem);
+  pointer-events: none;
+}
+
+@media (max-width: 1023px) {
+  .region {
+    top: calc(var(--nav-offset) + var(--space-2));
+    bottom: auto;
+    left: var(--space-3);
+    right: var(--space-3);
+    width: auto;
+  }
+}
+
+.toast {
+  pointer-events: auto;
+  padding: var(--space-3) var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.success {
+  color: var(--tint-pine-text);
+}
+
+.error {
+  color: var(--tint-error-text);
+}
+
+.message {
+  margin: 0;
+  font-size: var(--text-body-size);
+  line-height: var(--text-body-line);
+}
+
+.meta {
+  margin: 0;
+  font-size: var(--text-small-size);
+  line-height: var(--text-small-line);
+  font-family: var(--font-mono);
+  color: var(--color-ink-soft);
+}
+
+.dismiss {
+  align-self: flex-start;
+  min-height: var(--touch-min);
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  padding-inline: 0;
+}

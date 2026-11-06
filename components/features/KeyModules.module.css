@@ -1,0 +1,119 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.filters {
+  display: inline-flex;
+  align-self: flex-start;
+  gap: var(--space-1);
+  padding: var(--space-1);
+  border: var(--hairline);
+  border-radius: var(--radius-crystal);
+  background: var(--color-surface);
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.filter {
+  position: relative;
+  min-height: var(--touch-min);
+  padding: 0 var(--space-4);
+  border: 0;
+  border-radius: calc(var(--radius-crystal) - 2px);
+  background: transparent;
+  color: var(--color-ink);
+  font-weight: 700;
+  font-size: var(--text-small-size);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color var(--duration-micro-max) var(--ease-out-quart);
+}
+
+.filterActive {
+  color: var(--color-surface);
+}
+
+.pill {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--color-ink);
+}
+
+.filterLabel {
+  position: relative;
+}
+
+.count {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  opacity: 0.7;
+}
+
+.grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-3);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-5) var(--space-4);
+  border: var(--hairline);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  transform-origin: 50% 60%;
+}
+
+.optional {
+  background: var(--color-paper);
+  border-style: dashed;
+  border-color: var(--color-border);
+}
+
+.kind {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--text-eyebrow-size);
+  line-height: var(--text-eyebrow-line);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--tint-pine-text);
+}
+
+.optional .kind {
+  color: var(--tint-warn-text);
+}
+
+.name {
+  font-size: var(--text-card-size);
+  line-height: var(--text-card-line);
+  font-weight: 500;
+}
+
+.body {
+  color: var(--color-ink-soft);
+  font-size: var(--text-small-size);
+  line-height: var(--text-small-line);
+}

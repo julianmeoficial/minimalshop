@@ -1,0 +1,140 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--space-3);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--color-ink);
+}
+
+.header h1 {
+  font-size: var(--text-h2-size);
+  line-height: var(--text-h2-line);
+}
+
+.eyebrow {
+  font-size: var(--text-eyebrow-size);
+  line-height: var(--text-eyebrow-line);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--color-ink-soft);
+  margin-bottom: var(--space-1);
+}
+
+.published {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--text-small-size);
+}
+
+.published svg {
+  flex-shrink: 0;
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.product {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: var(--touch-min);
+  color: var(--color-ink);
+  text-decoration: none;
+}
+
+.product:hover .productName {
+  color: var(--color-pine);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.thumb {
+  position: relative;
+  flex-shrink: 0;
+  width: 3rem;
+  height: 3rem;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--color-media);
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--color-border);
+}
+
+.thumb img {
+  object-fit: cover;
+}
+
+.productText {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.productName {
+  font-weight: 700;
+}
+
+.productMeta {
+  font-size: var(--text-small-size);
+  line-height: var(--text-small-line);
+  color: var(--color-ink-soft);
+}
+
+.formHeader {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.formHeader h1 {
+  font-size: var(--text-h2-size);
+  line-height: var(--text-h2-line);
+}
+
+.headerRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-size: var(--text-small-size);
+  color: var(--color-ink-soft);
+}
+
+.crumbs a {
+  color: var(--color-ink-soft);
+  text-underline-offset: 0.2em;
+}
+
+.crumbs [aria-current='page'] {
+  color: var(--color-ink);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 24rem;
+}
+
+.lede {
+  color: var(--color-ink-soft);
+}

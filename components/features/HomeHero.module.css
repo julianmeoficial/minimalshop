@@ -1,0 +1,123 @@
+.hero {
+  display: grid;
+  gap: var(--space-6);
+  padding-bottom: var(--space-8);
+}
+
+@media (min-width: 1024px) {
+  .hero {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: var(--space-8);
+    align-items: end;
+    min-height: calc(100svh - var(--nav-offset) - var(--space-7));
+    padding-bottom: var(--space-7);
+  }
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  max-width: 40rem;
+}
+
+@media (min-width: 1024px) {
+  .copy {
+    padding-bottom: var(--space-4);
+  }
+}
+
+.eyebrow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-size: var(--text-eyebrow-size);
+  line-height: var(--text-eyebrow-line);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--color-ink-soft);
+}
+
+.title {
+  font-size: var(--text-hero-size);
+  line-height: var(--text-hero-line);
+  font-weight: 600;
+  letter-spacing: var(--tracking-display);
+  perspective: 600px;
+}
+
+/* Each line rises out of its own mask. */
+.mask {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+
+.line {
+  display: block;
+  will-change: transform;
+}
+
+.mask:nth-child(2) .line {
+  font-style: italic;
+  font-weight: 500;
+}
+
+.lede {
+  color: var(--color-ink-soft);
+  max-width: 30rem;
+}
+
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.media {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--color-media);
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .media {
+    aspect-ratio: 16 / 10;
+  }
+}
+
+@media (min-width: 1024px) {
+  .media {
+    aspect-ratio: auto;
+    height: 100%;
+    min-height: 34rem;
+  }
+}
+
+.image {
+  object-fit: cover;
+  object-position: 50% 70%;
+}
+
+/*
+ * First paint with JS motion pending: keep hero parts hidden so GSAP can play the intro.
+ * If hydration is slow, a short CSS fade reveals everything anyway.
+ */
+:global(html[data-motion='ok']) .hero[data-intro='pending'] [data-hero-line],
+:global(html[data-motion='ok']) .hero[data-intro='pending'] [data-hero-fade],
+:global(html[data-motion='ok']) .hero[data-intro='pending'] [data-hero-media] {
+  opacity: 0;
+  animation: intro-fallback var(--duration-enter) var(--ease-out-quart) 1.5s
+    forwards;
+}
+
+@keyframes intro-fallback {
+  to {
+    opacity: 1;
+  }
+}

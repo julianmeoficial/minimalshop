@@ -1,0 +1,71 @@
+.root {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding-top: var(--space-5);
+  border-top: var(--hairline);
+}
+
+.summary {
+  color: var(--color-ink-soft);
+  font-size: var(--text-small-size);
+  line-height: var(--text-small-line);
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  list-style: none;
+  margin: 0 0 0 auto;
+  padding: 0;
+}
+
+.page,
+.step {
+  min-width: var(--touch-min);
+  min-height: var(--touch-min);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-ink);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+  transition:
+    border-color var(--duration-micro-max) var(--ease-out-quart),
+    color var(--duration-micro-max) var(--ease-out-quart);
+}
+
+.step {
+  padding-inline: var(--space-3);
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: var(--text-small-size);
+}
+
+.page:hover,
+.step:hover {
+  border-color: var(--color-ink);
+}
+
+.page[aria-current='page'] {
+  border-color: var(--color-ink);
+  background: var(--color-ink);
+  color: var(--color-surface);
+}
+
+.disabled,
+.disabled:hover {
+  color: var(--color-ink-soft);
+  border-color: var(--color-line);
+  opacity: 0.6;
+}

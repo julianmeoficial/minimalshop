@@ -1,0 +1,19 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  width: 100%;
+}
+
+.error {
+  padding: var(--space-3);
+  border-radius: var(--radius-sm);
+  background: var(--tint-error);
+  color: var(--tint-error-text);
+  font-size: var(--text-small-size);
+  line-height: var(--text-small-line);
+}
+
+.meta {
+  font-family: var(--font-mono);
+}

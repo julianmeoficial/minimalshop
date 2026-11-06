@@ -1,0 +1,70 @@
+.root {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  overflow: hidden;
+  background:
+    radial-gradient(120% 90% at 30% 20%, var(--color-surface) 0%, transparent 60%),
+    linear-gradient(160deg, var(--color-surface) 0%, var(--color-paper-deep) 100%);
+  color: var(--color-ink-soft);
+}
+
+/* Large serif initial watermarked behind the icon. */
+.initial {
+  position: absolute;
+  right: -0.08em;
+  bottom: -0.22em;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--color-line);
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.icon {
+  position: relative;
+  width: var(--space-7);
+  height: var(--space-7);
+  color: var(--color-border);
+}
+
+.note {
+  position: relative;
+  font-size: var(--text-eyebrow-size);
+  line-height: var(--text-eyebrow-line);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.card .initial {
+  font-size: clamp(7rem, 18vw, 11rem);
+}
+
+.large .initial {
+  font-size: clamp(12rem, 30vw, 22rem);
+}
+
+.large .icon {
+  width: var(--space-8);
+  height: var(--space-8);
+}
+
+.thumb {
+  gap: 0;
+}
+
+.thumb .initial {
+  display: none;
+}
+
+.thumb .icon {
+  width: var(--space-5);
+  height: var(--space-5);
+}

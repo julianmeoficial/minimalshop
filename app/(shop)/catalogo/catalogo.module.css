@@ -1,0 +1,251 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+/* Sticky filter bar — liquid glass, the second (and last) glass surface on this screen. */
+.filterBar {
+  position: sticky;
+  top: calc(var(--nav-offset) - var(--space-2));
+  z-index: 10;
+  padding: var(--space-3) var(--space-4);
+}
+
+/* On phones the bar stays in flow so it never covers the grid. */
+@media (max-width: 767px) {
+  .filterBar {
+    position: relative;
+    top: auto;
+  }
+}
+
+.filters {
+  display: grid;
+  gap: var(--space-2);
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+}
+
+.search {
+  position: relative;
+  grid-column: 1 / -1;
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .filters {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 14rem) auto;
+    gap: var(--space-3);
+  }
+
+  .search {
+    grid-column: auto;
+  }
+}
+
+.inputIcon {
+  position: absolute;
+  left: var(--space-3);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-ink-soft);
+  pointer-events: none;
+}
+
+.input {
+  width: 100%;
+  min-height: var(--touch-min);
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font: inherit;
+  font-size: var(--text-body-size);
+}
+
+.withIcon {
+  padding-left: calc(var(--space-3) + var(--space-5));
+}
+
+.input:focus-visible {
+  outline: var(--focus-ring-ink);
+  outline-offset: var(--focus-offset);
+  box-shadow: 0 0 0 var(--focus-offset) var(--color-saffron);
+}
+
+.sort {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.sortLabel {
+  font-size: var(--text-small-size);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+@media (max-width: 767px) {
+  .sortLabel {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+}
+
+.apply {
+  white-space: nowrap;
+}
+
+/* Category chips — crystal glass, one row that scrolls sideways on small screens. */
+.chips {
+  margin-inline: calc(var(--margin-mobile) * -1);
+}
+
+.chips ul {
+  list-style: none;
+  margin: 0;
+  padding: var(--space-1) var(--margin-mobile) var(--space-2);
+  display: flex;
+  gap: var(--space-2);
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scroll-padding-inline: var(--margin-mobile);
+  scrollbar-width: none;
+}
+
+.chips ul::-webkit-scrollbar {
+  display: none;
+}
+
+.chips li {
+  flex-shrink: 0;
+  scroll-snap-align: start;
+}
+
+@media (min-width: 768px) {
+  .chips {
+    margin-inline: 0;
+  }
+
+  .chips ul {
+    flex-wrap: wrap;
+    overflow: visible;
+    padding-inline: 0;
+  }
+}
+
+.chipLink {
+  display: block;
+  border-radius: var(--radius-crystal);
+  color: var(--color-ink);
+  text-decoration: none;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--touch-min);
+  padding: 0 var(--space-4);
+  font-size: var(--text-small-size);
+  font-weight: 700;
+  white-space: nowrap;
+  transition: color var(--duration-micro-max) var(--ease-out-quart);
+}
+
+.chipLink:hover .chip {
+  color: var(--color-pine);
+}
+
+.chipLink[aria-current='page'] .chip {
+  background: var(--color-ink);
+  border-color: var(--color-ink);
+  color: var(--color-surface);
+}
+
+/* The active chip is solid ink: keep only a faint rim, no streak across the label. */
+.chipLink[aria-current='page'] .chip::before {
+  display: none;
+}
+
+.chipLink[aria-current='page'] .chip::after {
+  opacity: 0.35;
+}
+
+.clear {
+  color: var(--color-ink);
+  font-weight: 700;
+  text-underline-offset: 0.25em;
+  white-space: nowrap;
+}
+
+.clear:hover {
+  color: var(--color-pine);
+}
+
+.resultsBar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding-bottom: var(--space-3);
+  border-bottom: var(--hairline);
+  color: var(--color-ink-soft);
+  font-size: var(--text-small-size);
+  line-height: var(--text-small-line);
+}
+
+.resultsBar strong {
+  color: var(--color-ink);
+}
+
+.grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-6) var(--space-4);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-7) var(--space-5);
+  }
+}
+
+.back {
+  color: var(--color-ink-soft);
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.suggest {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.suggestTitle {
+  font-size: var(--text-h3-size);
+  line-height: var(--text-h3-line);
+  font-weight: 500;
+}

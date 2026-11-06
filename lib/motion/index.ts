@@ -1,0 +1,31 @@
+export {
+  duration,
+  easeInOut,
+  easeOutQuart,
+  easePower3InOut,
+  easePower3Out,
+  gsapEase,
+  stagger,
+  travel,
+} from './easings';
+export {
+  createHeroIntro,
+  createLineDraw,
+  createMediaWipe,
+  createScrubProgress,
+  createWordReveal,
+  createScrollReveal,
+  ensureGsapPlugins,
+  SCROLL_START,
+  type HeroIntroOptions,
+  type LineDrawOptions,
+  type ScrubProgressOptions,
+  type WordRevealOptions,
+  type MediaWipeOptions,
+  type MotionHandle,
+  gsap,
+  ScrollTrigger,
+  type ScrollRevealHandle,
+  type ScrollRevealOptions,
+} from './gsap';
+export { fadeRise, reducedFade } from './variants';

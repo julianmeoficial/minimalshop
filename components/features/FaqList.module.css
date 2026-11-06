@@ -1,0 +1,77 @@
+.list {
+  border-top: 1px solid var(--color-ink);
+}
+
+.item {
+  border-bottom: var(--hairline);
+}
+
+.question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  min-height: var(--touch-min);
+  padding: var(--space-4) 0;
+  font-family: var(--font-display);
+  font-size: var(--text-card-size);
+  line-height: var(--text-card-line);
+  font-weight: 500;
+  cursor: pointer;
+  list-style: none;
+  transition: color var(--duration-micro-max) var(--ease-out-quart);
+}
+
+.question::-webkit-details-marker {
+  display: none;
+}
+
+.question:hover {
+  color: var(--color-pine);
+}
+
+.icon {
+  flex-shrink: 0;
+  transition: transform var(--duration-component-min) var(--ease-out-quart);
+}
+
+.item[open] .icon {
+  transform: rotate(45deg);
+}
+
+.answer {
+  padding-bottom: var(--space-5);
+  color: var(--color-ink-soft);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .item[open] .answer {
+    animation: answer-in var(--duration-enter) var(--ease-out-quart);
+  }
+}
+
+@keyframes answer-in {
+  from {
+    opacity: 0;
+    transform: translateY(calc(var(--motion-enter-y) * -1));
+  }
+}
+
+/* Compact: inside the product page column. */
+.compact {
+  border-top-color: var(--color-line);
+}
+
+.compact .question {
+  padding: var(--space-3) 0;
+  font-family: var(--font-ui);
+  font-size: var(--text-small-size);
+  line-height: var(--text-small-line);
+  font-weight: 700;
+}
+
+.compact .answer {
+  padding-bottom: var(--space-3);
+  font-size: var(--text-small-size);
+  line-height: var(--text-small-line);
+}

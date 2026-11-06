@@ -1,0 +1,155 @@
+/**
+ * MinimalShop design tokens — source of truth: DESIGN.md
+ * Never hardcode colors, space, radius, shadow or duration in components.
+ */
+
+:root {
+  /* Color */
+  --color-paper: #f7f4ee;
+  --color-surface: #fffdf9;
+  --color-ink: #1b1a17;
+  --color-ink-soft: #55514a;
+  --color-pine: #1f5c4a;
+  --color-saffron: #e3a81f;
+  --color-error: #b3261e;
+  --color-warn: #7a5200;
+  --color-border: #8c8577;
+  --color-line: #d9d3c7;
+  --color-scrim: rgba(27, 26, 23, 0.35);
+  --color-paper-deep: #efeae0; /* quiet band behind editorial sections */
+  --color-media: #e9e4da; /* image well before the photo arrives */
+
+  --tint-pine: #e2efe9;
+  --tint-pine-text: #17493a;
+  --tint-error: #fbe4e1;
+  --tint-error-text: #8f1d17;
+  --tint-warn: #fbefd0;
+  --tint-warn-text: #6b4600;
+
+  /* Glass — liquid (nav, dialog, sheet, sticky bars) and crystal (chips, price tags, toasts) */
+  --glass-surface: rgba(255, 253, 249, 0.64);
+  --glass-surface-strong: rgba(255, 253, 249, 0.8); /* over photography or dense text */
+  --glass-tint-top: rgba(255, 255, 255, 0.5); /* liquid body gradient, top */
+  --glass-tint-bottom: rgba(255, 253, 249, 0.18); /* liquid body gradient, bottom */
+  --glass-border: rgba(255, 255, 255, 0.6);
+  --glass-edge-crystal: rgba(255, 255, 255, 0.85);
+  --glass-highlight: rgba(255, 255, 255, 0.45);
+  --glass-rim: rgba(255, 255, 255, 0.9); /* bright refracted rim, top-left */
+  --glass-rim-soft: rgba(255, 255, 255, 0.15); /* rim fading toward bottom-right */
+  --glass-ink-veil: rgba(27, 26, 23, 0.04); /* tints the lower half so ink keeps contrast */
+  --glass-blur-liquid: 20px;
+  --glass-blur-crystal: 10px;
+  --glass-saturate-liquid: 180%;
+  --glass-saturate-crystal: 140%;
+  --glass-radius-liquid: 12px;
+  --glass-radius-crystal: 10px;
+  --glass-fallback: #fffdf9;
+  --glass-lens: rgba(255, 255, 255, 0.22); /* liquid lensing ring */
+  --glass-edge-shade: rgba(27, 26, 23, 0.06); /* lower inner edge */
+  --glass-shadow: 0 1px 1px rgba(27, 26, 23, 0.04),
+    0 18px 40px -16px rgba(27, 26, 23, 0.22); /* floating layers only */
+  --glass-shadow-crystal: 0 1px 0 rgba(27, 26, 23, 0.05),
+    0 6px 16px -8px rgba(27, 26, 23, 0.2);
+
+  /* Typography roles (families set via next/font CSS variables on <html>) */
+  --font-ui: var(--font-atkinson), system-ui, sans-serif;
+  --font-display: var(--font-newsreader), Georgia, serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+
+  --text-display-size: 2.5rem;
+  --text-display-line: 3rem;
+  --text-h2-size: 2rem;
+  --text-h2-line: 2.5rem;
+  --text-h3-size: 1.5rem;
+  --text-h3-line: 2rem;
+  --text-body-size: 1rem;
+  --text-body-line: 1.5rem;
+  --text-small-size: 0.875rem;
+  --text-small-line: 1.25rem;
+  --text-price-size: 1.5rem;
+  --text-price-line: 2rem;
+  --text-hero-size: clamp(2.75rem, 1.6rem + 4.6vw, 5.25rem);
+  --text-hero-line: 1.02;
+  --text-card-size: clamp(1.125rem, 1rem + 0.5vw, 1.375rem); /* product titles in grids */
+  --text-card-line: 1.25;
+  --text-page-size: clamp(2.5rem, 1.9rem + 2.6vw, 4rem);
+  --text-section-size: clamp(2rem, 1.5rem + 2vw, 3rem);
+  --text-section-line: 1.08;
+  --text-eyebrow-size: 0.8125rem;
+  --text-eyebrow-line: 1.25rem;
+  --tracking-display: -0.02em;
+  --tracking-eyebrow: 0.04em;
+
+  /* Space (4px base) */
+  --space-1: 0.25rem; /* 4 */
+  --space-2: 0.5rem; /* 8 */
+  --space-3: 0.75rem; /* 12 */
+  --space-4: 1rem; /* 16 */
+  --space-5: 1.5rem; /* 24 */
+  --space-6: 2rem; /* 32 */
+  --space-7: 3rem; /* 48 */
+  --space-8: 4rem; /* 64 */
+  --space-9: 6rem; /* 96 — section rhythm on desktop */
+  --space-10: 8rem; /* 128 */
+
+  /* Radius */
+  --radius-sm: 2px;
+  --radius-md: 6px;
+  --radius-crystal: var(--glass-radius-crystal);
+  --radius-liquid: var(--glass-radius-liquid);
+  --radius-pill: 999px; /* switches, meters, count badges */
+
+  /* Layout */
+  --container-max: 75rem; /* 1200px */
+  --margin-mobile: var(--space-4);
+  --margin-desktop: var(--space-7);
+  --measure-max: 68ch;
+  --touch-min: 2.75rem; /* 44px */
+  --nav-height: 4rem;
+  --bottom-bar-height: 4.5rem; /* mobile sticky buy / checkout bars */
+  --nav-offset: calc(var(--nav-height) + var(--space-3) * 2);
+  --hairline: 1px solid var(--color-line);
+
+  /* Focus */
+  --focus-ring-ink: 2px solid var(--color-ink);
+  --focus-ring-saffron: 3px solid var(--color-saffron);
+  --focus-offset: 2px;
+
+  /* Motion — see DESIGN.md §7 (KORVAE enter, Ledup scroll, Almada media) */
+  --duration-micro-min: 120ms;
+  --duration-micro-max: 180ms;
+  --duration-component-min: 200ms;
+  --duration-component-max: 340ms;
+  --duration-enter: 340ms; /* KORVAE component enter */
+  --duration-sequence-min: 400ms;
+  --duration-sequence-max: 700ms;
+  --duration-scroll-min: 600ms;
+  --duration-scroll-max: 900ms;
+  --duration-scroll-reveal: 900ms; /* Ledup canonical section reveal */
+  --duration-media-wipe: 600ms;
+  --duration-media-swap: 300ms; /* Almada product image swap */
+  --duration-media-swap-delay: 100ms;
+  --duration-reduced: 120ms;
+  --duration-skeleton: 1600ms; /* loading pulse / progress loop */
+  --motion-enter-y: 8px;
+  --motion-scroll-y: 24px;
+  --motion-stagger-min: 80ms;
+  --motion-stagger-max: 120ms;
+  --ease-out-quart: cubic-bezier(0.22, 1, 0.36, 1); /* KORVAE / component */
+  --ease-power3-out: cubic-bezier(0.215, 0.61, 0.355, 1); /* Ledup power3.out approx */
+  --ease-power3-in-out: cubic-bezier(0.645, 0.045, 0.355, 1); /* media wipe */
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --media-hover-filter: saturate(0.85) brightness(1.03); /* Almada swap target */
+
+  /* Breakpoints (reference; use in media queries as px) */
+  --bp-mobile: 360px;
+  --bp-tablet: 768px;
+  --bp-desktop: 1024px;
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  :root {
+    --glass-surface: var(--glass-fallback);
+    --glass-surface-strong: var(--glass-fallback);
+  }
+}
