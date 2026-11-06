@@ -1,38 +1,11 @@
 import type { Metadata, Viewport } from 'next';
-import {
-  Atkinson_Hyperlegible_Next,
-  IBM_Plex_Mono,
-  Newsreader,
-} from 'next/font/google';
 
+import { atkinson, newsreader, plexMono } from './fonts';
 import { ToastProvider } from '@/components/ui';
 import { photos } from '@/lib/content/photos';
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from '@/lib/site';
 
 import '@/styles/globals.css';
-
-const atkinson = Atkinson_Hyperlegible_Next({
-  subsets: ['latin'],
-  weight: ['400', '700'],
-  display: 'swap',
-  variable: '--font-atkinson',
-  adjustFontFallback: false,
-});
-
-const newsreader = Newsreader({
-  subsets: ['latin'],
-  weight: ['500', '600'],
-  style: ['normal', 'italic'],
-  display: 'swap',
-  variable: '--font-newsreader',
-});
-
-const plexMono = IBM_Plex_Mono({
-  subsets: ['latin'],
-  weight: ['500'],
-  display: 'swap',
-  variable: '--font-plex-mono',
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
